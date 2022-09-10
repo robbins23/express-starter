@@ -1,0 +1,42 @@
+{
+  "name": "express-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srobbin01/express-starter-kit.git"
+  },
+  "keywords": [
+    "express",
+    "starter",
+    "first-project",
+    "expressjs",
+    "starter-kit"
+  ],
+  "author": "srobbin01",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srobbin01/express-starter-kit/issues"
+  },
+  "homepage": "https://github.com/srobbin01/express-starter-kit#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "helmet": "^6.0.0",
+    "jwt-simple": "^0.5.6",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.5.4",
+    "morgan": "^1.10.0",
+    "node-schedule": "^2.1.0",
+    "nodemon": "^2.0.19"
+  }
+}
