@@ -15,11 +15,11 @@ module.exports ={
         if(!emailId)return res.apiError("Email Id is required")
         if(!name)return res.apiError("Name is required")
         if(!password)return res.apiError("Password is required")
-        let u = await User.findOne({emailId : emailId})
+        let u = await await User.findOne({emailId : emailId})
         if(u){
             return res.apiError("This Email Id is already registered!")
         }else{
-            u = User.create({emailId, password, name})
+            u = await User.create({emailId, password, name})
             let data = {
                 name : u.name,
                 token : jwt.encode({userId : u.id.toString(), time : new Date().getTime()}, secret)
