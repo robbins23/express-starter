@@ -1,6 +1,7 @@
 const User = require("../models/User")
 const jwt = require('jwt-simple');
 const secret = process.env.JWT_SECRET;
+const sha256 = require('sha256')
 
 
 module.exports ={
@@ -14,11 +15,12 @@ module.exports ={
         let {emailId, password, name} = req.body
         if(!emailId)return res.apiError("Email Id is required")
         if(!name)return res.apiError("Name is required")
-        if(!password)return res.apiError("Password is required")
+        if(!password || password.trim().length == 0)return res.apiError("Password is required")
         let u = await await User.findOne({emailId : emailId})
         if(u){
             return res.apiError("This Email Id is already registered!")
         }else{
+            password = sha256(password)
             u = await User.create({emailId, password, name})
             let data = {
                 name : u.name,
@@ -32,6 +34,7 @@ module.exports ={
         let {emailId, password} = req.body
         let u = await User.findOne({emailId : emailId})
         if(u){
+            password = sha256(password)
             if(u.password == password){
                 let data = {
                     name : u.name,

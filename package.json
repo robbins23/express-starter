@@ -37,6 +37,7 @@
     "mongoose": "^6.5.4",
     "morgan": "^1.10.0",
     "node-schedule": "^2.1.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sha256": "^0.2.0"
   }
 }

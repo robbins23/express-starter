@@ -29,7 +29,7 @@ if(dev){
 	console.log = function () {};
 
     // Allow api call only from trusted website on production, in this case it will be your app server(react/ angular) url
-	var whitelist = ['https://google.com']
+	// var whitelist = ['https://google.com']
 	var corsOptions = {
 	origin: function (origin, callback) {
 		if (whitelist.indexOf(origin) !== -1) {

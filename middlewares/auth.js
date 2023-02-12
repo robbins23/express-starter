@@ -10,20 +10,24 @@ const checkAuthToken = async (req, res, next) => {
     if(req.path.substring(1,7) == "public")return next();
     var token = req.body.token || req.query.token || req.headers['Authorization'] || req.headers['authorization'];
     // decode token
-    if (token && token.split(" ").length == 2 && token.split(" ")[1]) {
-      // verifies secret and checks exp
-      token = token.split(" ")[1]
-      var decoded = jwt.decode(token, secret);
-        console.log(decoded); //=> { foo: 'bar' }
-        if(!decoded){
-            return res.sendStatus(403);
-        }else{
-            req.user = decoded;
-            next();
+    try{
+        if (token && token.split(" ").length == 2 && token.split(" ")[1]) {
+          // verifies secret and checks exp
+          token = token.split(" ")[1]
+          var decoded = jwt.decode(token, secret);
+            console.log(decoded); //=> { foo: 'bar' }
+            if(!decoded){
+                return res.sendStatus(403);
+            }else{
+                req.user = decoded;
+                next();
+            }
+        } else {
+            req.errorMessage = 'No Token Provided!';
+              return res.sendStatus(403);
         }
-    } else {
-        req.errorMessage = 'No Token Provided!';
-          return res.sendStatus(403);
+    }catch{
+      return res.sendStatus(403);
     }
 }
 
