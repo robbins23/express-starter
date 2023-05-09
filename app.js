@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const events = require('events');
+const fileUpload = require('express-fileupload');
 
 const PORT = 8080  // PORT where your node server will run
 const dev = process.env.NODE_ENV !== 'production'
@@ -80,6 +81,10 @@ app.use(helmet());
 
 // used to parse the incoming requests with JSON payloads and is based upon the bodyparser
 app.use(express.json());
+
+// used for uploading file
+app.use(fileUpload());
+
 
 //adding response middleware to structure all API responses in specific format
 app.use(apiResponseMiddleware());

@@ -7,7 +7,7 @@ const checkAuthToken = async (req, res, next) => {
     // check header or url parameters or post parameters for token
     const nonSecurePaths = ['/user/login', '/user/register', ];
     if (nonSecurePaths.includes(req.path)) return next();
-    if(req.path.substring(1,7) == "public")return next();
+    if(req.path.substring(1,7) == "public" || req.path.substring(1,7) == "upload")return next();
     var token = req.body.token || req.query.token || req.headers['Authorization'] || req.headers['authorization'];
     // decode token
     try{
